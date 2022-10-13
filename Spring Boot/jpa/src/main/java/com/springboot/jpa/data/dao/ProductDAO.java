@@ -12,3 +12,4 @@ public interface ProductDAO {
 
     void deleteProduct(Long number) throws Exception;
 }
+
