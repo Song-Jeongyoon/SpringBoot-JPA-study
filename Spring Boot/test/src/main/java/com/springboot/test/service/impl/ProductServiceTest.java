@@ -28,13 +28,14 @@ public class ProductServiceTest {
     // 테스트 코드
     @Test
     void getProductTest() {
+        // 엔티티 객체 생성
         Product givenProduct = new Product();
         givenProduct.setNumber(123L);
         givenProduct.setName("lightStick");
         givenProduct.setPrice(5000);
         givenProduct.setStock(1234);
 
-        // 결과 리턴
+        // repository 결과 리턴
         Mockito.when(productRepository.findById(123L)).thenReturn(Optional.of(givenProduct));
 
         // 동작 테스트
