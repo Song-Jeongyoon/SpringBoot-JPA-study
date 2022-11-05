@@ -3,7 +3,6 @@ package jpabook.model.entity;
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
 @Table(name = "ORDERS")
 public class Order {
@@ -22,6 +21,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    // getter, setter
     public Long getId() {
         return id;
     }
