@@ -1,5 +1,6 @@
 package com.springboot.valid_exception.data.dto;
 
+import com.springboot.valid_exception.config.annotation.Telephone;
 import com.springboot.valid_exception.data.group.ValidationGroup1;
 import com.springboot.valid_exception.data.group.ValidationGroup2;
 import lombok.*;
@@ -11,7 +12,7 @@ import javax.validation.constraints.*;
 @AllArgsConstructor
 @ToString
 @Builder
-public class ValidRequestDto {
+public class ValidatedRequestDto {
 
     // null, "", " " 허용하지 않음
     @NotBlank
@@ -22,11 +23,12 @@ public class ValidRequestDto {
     String email;
 
     // 정규식 검증
-    @Pattern(regexp = "01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$")
+    @Telephone
     String phoneNumber;
 
     // 최소값, 최대값 검증
-    @Min(value=20) @Max(value=40)
+    @Min(value=20, groups = ValidationGroup1.class)
+    @Max(value=40, groups = ValidationGroup1.class)
     int age;
 
     // 문자열 길이 검증
@@ -34,7 +36,7 @@ public class ValidRequestDto {
     String description;
 
     // 양수 허용
-    @Positive
+    @Positive(groups = ValidationGroup2.class)
     int count;
 
     // true인지 체크, null은 체크 안함
