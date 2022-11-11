@@ -51,5 +51,4 @@ public class CustomExceptionHandler {
 
         return new ResponseEntity<>(map, responseHeaders, e.getHttpStatus());
     }
-
 }
