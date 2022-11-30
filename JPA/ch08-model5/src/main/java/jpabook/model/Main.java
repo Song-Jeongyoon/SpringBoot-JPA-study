@@ -1,8 +1,5 @@
 package jpabook.model;
 
-import jpabook.model.entity.Delivery;
-import jpabook.model.entity.Order;
-import jpabook.model.entity.OrderItem;
 import jpabook.model.entity.item.Movie;
 
 import javax.persistence.EntityManager;
@@ -31,14 +28,13 @@ public class Main {
 
     private static void logic(EntityManager em) {
 
-        Delivery delivery = new Delivery();
-        OrderItem orderItem1 = new OrderItem();
-        OrderItem orderItem2 = new OrderItem();
+        // 영화 등록
+        Movie movie = new Movie();
+        movie.setActor("짐 캐리");
+        movie.setDirector("팀 버튼");
 
-        Order order = new Order();
-        order.setDelivery(delivery);
-        order.addOrderItem(orderItem1);
-        order.addOrderItem(orderItem2);
+        System.out.println("영화 배우 : " + movie.getActor());
+        System.out.println("영화 감독 : " + movie.getDirector());
 
     }
 
