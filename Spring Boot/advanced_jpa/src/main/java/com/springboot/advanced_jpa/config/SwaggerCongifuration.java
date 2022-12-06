@@ -19,7 +19,7 @@ public class SwaggerCongifuration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.springboot.jpa")) // 스캔할 페이지 범위 설정
+                .apis(RequestHandlerSelectors.basePackage("com.springboot.advanced_jpa")) // 스캔할 페이지 범위 설정
                 .paths(PathSelectors.any())
                 .build();
     }

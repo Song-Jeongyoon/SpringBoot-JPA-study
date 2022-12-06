@@ -1,6 +1,7 @@
 package com.springboot.advanced_jpa.data.repository;
 
 import com.springboot.advanced_jpa.data.entity.Product;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.*;
@@ -69,6 +70,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> { // 대
     List<Product> findByNameEndsWith(String name);
     List<Product> findByNameEndingWith(String name);
     List<Product> findByNameIsEndingWith(String name);
+
+    // 정렬
+    List<Product> findByNameOrderByNumberAsc(String name);
+    List<Product> findByNameOrderByNumberDesc(String name);
+    List<Product> findByNameOrderByPriceAscStockDesc(String name);
+    List<Product> findByName(String name, Sort sort);
+
+
+
 
 }
 
