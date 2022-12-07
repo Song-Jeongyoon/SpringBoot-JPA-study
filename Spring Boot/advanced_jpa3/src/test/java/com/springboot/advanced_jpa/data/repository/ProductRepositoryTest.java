@@ -1,6 +1,6 @@
-package com.springboot.advanced_jpa.data.repository;
+package com.springboot.advanced_jpa3.data.repository;
 
-import com.springboot.advanced_jpa.data.entity.Product;
+import com.springboot.advanced_jpa3.data.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,9 +9,8 @@ import org.springframework.data.domain.Sort.Order;
 
 import java.time.LocalDateTime;
 
-
 @SpringBootTest
-class ProductRepositoryTest {
+public class ProductRepositoryTest {
 
     @Autowired
     ProductRepository productRepository;
@@ -28,14 +27,14 @@ class ProductRepositoryTest {
         Product product2 = new Product();
         product2.setName("슬로건");
         product2.setPrice(5000);
-        product2.setStock(100);
+        product2.setStock(300);
         product2.setCreatedAt(LocalDateTime.now());
         product2.setUpdatedAt(LocalDateTime.now());
 
         Product product3 = new Product();
         product3.setName("티셔츠");
-        product3.setPrice(7000);
-        product3.setStock(300);
+        product3.setPrice(3000);
+        product3.setStock(100);
         product3.setCreatedAt(LocalDateTime.now());
         product3.setUpdatedAt(LocalDateTime.now());
 
@@ -43,10 +42,8 @@ class ProductRepositoryTest {
         Product savedProduct2 = productRepository.save(product2);
         Product savedProduct3 = productRepository.save(product3);
 
-        System.out.println(productRepository.findByName("응원봉", Sort.by(Order.asc("price"))));
-        System.out.println(productRepository.findByName("응원봉", Sort.by(Order.asc("price"), Order.desc("stock"))));
-
+        productRepository.findByName("응원봉", Sort.by(Order.asc("price")));
+        productRepository.findByName("응원봉", Sort.by(Order.asc("price"), Order.desc("stock")));
     }
-
 
 }
