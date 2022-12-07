@@ -22,6 +22,7 @@ public class ProductController {
 
     @GetMapping()
     public ResponseEntity<ProductResponseDto> getProduct(Long number) {
+
         ProductResponseDto productResponseDto = productService.getProduct(number);
 
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
@@ -29,6 +30,7 @@ public class ProductController {
 
     @PostMapping()
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductDto productDto) {
+
         ProductResponseDto productResponseDto = productService.saveProduct(productDto);
 
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
@@ -39,9 +41,11 @@ public class ProductController {
             @RequestBody ChangeProductNameDto changeProductNameDto) throws Exception {
 
         ProductResponseDto productResponseDto = productService.changeProductName(
-                changeProductNameDto.getNumber(), changeProductNameDto.getName()
-        );
+                changeProductNameDto.getNumber(),
+                changeProductNameDto.getName());
+
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
+
     }
 
     @DeleteMapping()
@@ -51,6 +55,6 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
 
-
 }
+
 
