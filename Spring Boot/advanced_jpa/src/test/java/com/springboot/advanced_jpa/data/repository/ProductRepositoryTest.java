@@ -40,9 +40,17 @@ public class ProductRepositoryTest {
         product3.setCreatedAt(LocalDateTime.now());
         product3.setUpdatedAt(LocalDateTime.now());
 
+        Product product4 = new Product();
+        product4.setName("슬로건");
+        product4.setPrice(1000);
+        product4.setStock(500);
+        product4.setCreatedAt(LocalDateTime.now());
+        product4.setUpdatedAt(LocalDateTime.now());
+
         Product savedProduct1 = productRepository.save(product1);
         Product savedProduct2 = productRepository.save(product2);
         Product savedProduct3 = productRepository.save(product3);
+        Product savedProduct4 = productRepository.save(product4);
 
         // sort
         productRepository.findByName("응원봉", Sort.by(Order.asc("price")));
@@ -52,6 +60,9 @@ public class ProductRepositoryTest {
         Page<Product> productPage = productRepository.findByName("응원봉", PageRequest.of(0, 2));
         System.out.println("productPage = " + productPage);
         System.out.println("productPage.getContent() = " + productPage.getContent()); // 배열 형태로 출력
+
+        // @Query
+        System.out.println(productRepository.findByNameParam("슬로건"));
     }
 
 }

@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -75,14 +77,24 @@ public interface ProductRepository extends JpaRepository<Product, Long> { // 대
     List<Product> findByNameEndingWith(String name);
     List<Product> findByNameIsEndingWith(String name);
 
-    // 정렬
+    // sort
     List<Product> findByNameOrderByNumberAsc(String name);
     List<Product> findByNameOrderByNumberDesc(String name);
     List<Product> findByNameOrderByPriceAscStockDesc(String name);
     List<Product> findByName(String name, Sort sort);
 
-    // 페이징
+    // paging
     Page<Product> findByName(String name, Pageable pageable);
+
+    // @Query
+    @Query("SELECT p FROM Product As p WHERE p.name = ?1")
+    List<Product> findByName(String name);
+
+    @Query("SELECT p FROM Product As p WHERE p.name = ?1")
+    List<Product> findByNameParam(@Param("name") String name);
+
+    @Query("SELECT p.name, p.price, p.stock FROM Product As p WHERE p.name = :name")
+    List<Object[]> findByNameParam2(@Param("name") String name);
 
 }
 
