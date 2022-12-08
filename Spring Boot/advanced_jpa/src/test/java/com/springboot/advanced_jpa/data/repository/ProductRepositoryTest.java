@@ -4,6 +4,8 @@ import com.springboot.advanced_jpa.data.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
@@ -25,14 +27,14 @@ public class ProductRepositoryTest {
         product1.setUpdatedAt(LocalDateTime.now());
 
         Product product2 = new Product();
-        product2.setName("슬로건");
+        product2.setName("응원봉");
         product2.setPrice(5000);
         product2.setStock(300);
         product2.setCreatedAt(LocalDateTime.now());
         product2.setUpdatedAt(LocalDateTime.now());
 
         Product product3 = new Product();
-        product3.setName("티셔츠");
+        product3.setName("응원봉");
         product3.setPrice(3000);
         product3.setStock(100);
         product3.setCreatedAt(LocalDateTime.now());
@@ -42,8 +44,14 @@ public class ProductRepositoryTest {
         Product savedProduct2 = productRepository.save(product2);
         Product savedProduct3 = productRepository.save(product3);
 
+        // sort
         productRepository.findByName("응원봉", Sort.by(Order.asc("price")));
         productRepository.findByName("응원봉", Sort.by(Order.asc("price"), Order.desc("stock")));
+
+        // paging
+        Page<Product> productPage = productRepository.findByName("응원봉", PageRequest.of(0, 2));
+        System.out.println("productPage = " + productPage);
+        System.out.println("productPage.getContent() = " + productPage.getContent()); // 배열 형태로 출력
     }
 
 }
