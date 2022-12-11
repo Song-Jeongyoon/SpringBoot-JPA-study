@@ -27,6 +27,7 @@ public class ProductRepositoryTest {
     @Test
     void sortingAndPagingTest() {
         Product product1 = new Product();
+        product1.setName("응원봉");
         product1.setPrice(10000);
         product1.setStock(500);
         product1.setCreatedAt(LocalDateTime.now());
@@ -53,7 +54,7 @@ public class ProductRepositoryTest {
         product4.setCreatedAt(LocalDateTime.now());
         product4.setUpdatedAt(LocalDateTime.now());
 
-        //Product savedProduct1 = productRepository.save(product1);
+        Product savedProduct1 = productRepository.save(product1);
         Product savedProduct2 = productRepository.save(product2);
         Product savedProduct3 = productRepository.save(product3);
         Product savedProduct4 = productRepository.save(product4);
@@ -172,7 +173,6 @@ public class ProductRepositoryTest {
             System.out.println("Product Name : " + product);
             System.out.println("---------------------");
         }
-
     }
 
 }
